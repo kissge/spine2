@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>背表紙作るやつー</title>
+    <style media="screen">
+     div.print { display: none; }
+     input { width: 30%; }
+     textarea { width: 100%; }
+    </style>
+    <style media="print">
+     html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}
+     div.print {
+         width: 100%;
+         padding: 20mm 0mm;
+         text-align: center;
+         border-bottom: 1px dotted gray;
+         line-height: 0;
+     }
+     div.print div {
+         width: 20%;
+         height: 4pt;
+         margin: 0;
+         font-size: 4pt;
+         line-height: 4pt;
+         display: inline-block;
+     }
+     div.print div.title {
+         width: 40%;
+     }
+     div.screen {
+         display: none;
+     }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+  <body>
+      <div class="print">
+          <div class="title"></div><div></div><div></div>
+          <div class="title"></div><div></div><div></div>
+      </div>
+      <div class="print">
+          <div class="title"></div><div></div><div></div>
+          <div class="title"></div><div></div><div></div>
+      </div>
+      <div class="print">
+          <div class="title"></div><div></div><div></div>
+          <div class="title"></div><div></div><div></div>
+      </div>
+      <div class="print">
+          <div class="title"></div><div></div><div></div>
+          <div class="title"></div><div></div><div></div>
+      </div>
+      <div class="screen">
+          <h1>卒論・修論の背表紙作るやつ</h1>
+          <input value="Study on Computer Algebra System" />
+          <input value="Author Name" />
+          <input value="東京大学大学院理学系研究科物理学専攻" /><br />
+          <input value="数式処理計算機の研究" />
+          <input value="00-000000 著者名" />
+          <input />
+          <br />
+          すべて入力後，Google Chromeの印刷機能でLandscape, A4, Margin: Noneでこのページを<a href="javascript:print();">印刷する</a>．下はいじらない．<br />
+          <textarea rows="4">{
+  "font-family": "Hiragino Kaku Gothic Pro"
+}</textarea>
+          <a rel="license" href="http://creativecommons.org/publicdomain/mark/1.0/"><img alt="Public domain" style="border-width:0" src="publicdomain.png" /></a>
+      </div>
+      <script>
+       $(function () {
+           $('input').on('change keyup', function () {
+               var i = $('div.screen input').index(this), v = $(this).val();
+               $('div.print').each(function () { $(this).find('div').eq(i).prop('innerText', v); });
+           });
+           $('textarea').on('change', function () { $('div.print').css(JSON.parse($(this).val())); });
+           $('input').eq(5).val(new Date().toLocaleString("en-US", { month: "long" }) + ", " + new Date().getFullYear());
+           $('input, textarea').trigger('change');
+       });
+      </script>
+  </body>
+</html>

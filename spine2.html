@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>新・背表紙作るやつー</title>
+        <style>
+         html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}
+         .spine {
+             width: 297mm; /* 横幅はA4めいっぱい */
+             border-bottom: 1mm dotted gray; /* 切り取り線 */
+             padding: 2cm 2cm; /* 上下左右の余白 */
+             height: 3.2mm; /* 文字の入る部分の高さ */
+             margin: 0;
+             position: relative;
+             font-family: "Times", "Hiragino Kaku Gothic Pro";
+             font-size: 3.2mm;
+         }
+         .spine .j {
+             position: absolute;
+             transform: rotate(-90deg);
+             transform-origin: left top 0;
+             writing-mode: tb-rl;
+             top: calc(2cm + 3.2mm);
+             left: calc(2cm + 50mm); /* 英文タイトルの長さに応じてかえる */
+             height: calc(297mm - 50mm); /* 英文タイトルの長さに応じてかえる */
+         }
+         .spine .e {
+             position: absolute;
+             width: 50mm; /* 50mm */
+             top: 20mm; /* 2cmでいいはずだけど見た感じのバランス感覚で調整 */
+             left: 2cm;
+         }
+         .spine .left {
+             float: left;
+         }
+         .spine .right {
+             float: right;
+         }
+        </style>
+        <style media="screen">
+         h1 {
+             font-size: x-large;
+             font-weight: bold;
+             margin: 2em 3em;
+         }
+         [contenteditable] {
+             background-color: #eee;
+         }
+         .controllers {
+             margin: 2em;
+         }
+         .controllers input {
+             width: 3em;
+             font-size: large;
+             text-align: right;
+         }
+         button#print {
+             font-size: large;
+         }
+         .spine {
+             border: 1px dotted gray;
+             margin-left: 3em;
+             margin-top: 3em;
+         }
+         #spines > section:nth-of-type(n+2) {
+             display: none;
+         }
+        </style>
+        <style media="print">
+         .hidden {
+             display: none;
+         }
+        </style>
+    </head>
+    <body>
+        <h1 class="hidden">新・背表紙作るやつー</h1>
+
+        <section id="spines">
+            <script>
+                for (let i = 0; i < 4; i++) {
+                    document.write(`
+                        <section class="spine">
+                            <section class="e" contenteditable>
+                                CHANGE ME by Yuto Kisuge
+                            </section>
+                            <section class="j">
+                                <span class="left" contenteditable>（修士論文背表紙の最適なフォントサイズについて　黄菅ユウト）</span>
+                                <span class="right" contenteditable>二〇一七年一月三〇日　東京大学大学院情報理工学系研究科コンピュータ科学専攻修士課程</span>
+                            </section>
+                        </section>
+                    `);
+                }
+            </script>
+        </section>
+
+        <section class="hidden controllers">
+            タイトル長さ <input id="adjust-len" type="number" value="50.0" /> mm
+            英文タイトル垂直位置調整 <input id="adjust-pos" type="number" value="20.0" /> mm
+            <button id="print">印刷</button><hr />
+            ぼくの好みで後半部が超長くなってますが論文のタイトルがよほど短くないと入らないと思うので適宜調整して下さい。
+            論文が40ページだとちょうどいいくらいの文字サイズ設定。
+            macOSのGoogle Chromeの印刷機能でLandscape, A4, Margin: Noneに設定するといいかんじです。
+            他の環境では適宜調整が必要かもです。
+            <a rel="license" href="http://creativecommons.org/publicdomain/mark/1.0/">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSU
+                          hEUgAAACAAAAAQCAQAAADdCbXSAAAB7UlEQVQ4y4
+                          3TW2gOYBjA8d++bwe7IHbD5rC0FEYpsRIpl8shFw
+                          oThbRkRTEh1hyyOaxJyGGOueBWIXFHLoxa0ljaSC
+                          FXtPNn9riw72vZiv979bz/t+d9e97nIU2JWq/06N
+                          Wizuz0dvxjpdnpp1+eu6rJU/1Cjdx0giGKnfZWly
+                          5tzplhGFeEC6Zl4knqhXuSwxKs9UOHehttcEyrXp
+                          Xp45XCAX+zRTieSbBGaJCfsUmHhG1QpNdNo3FYmB
+                          eCybqdHeH3CqXsM2gqimy1zgQsVmWRLAX6XAjBSV
+                          /kShhvInIUGAPa3OSFZkz2SYtWTXbo99A3S3Ffew
+                          ja1GGJFrdcdclzz5Sj2ic6XR+qQ4F8U3xxB0XG4I
+                          S+EHSrwArNFninxQYrvUS5roSkQeQIA3plyTGAHk
+                          kMygJZAikldjisQ66E+OOzvVOK+2o8kNLhjIMoU+
+                          mxmb6Cz0rxy2ObsNBm/Q5glu/UGlCIEvttNw7LHb
+                          EMY3W5FoJGH2VLDJUu13hJ8Npdpku5POo3VgtlIZ
+                          iqz6kRfqcwD3YLe0botcLZTCNVCEflZWzCbmFXOr
+                          gtNCrO6EI1wiN5w1p5vW7tDlltlf3eSKkaft8+Yd
+                          ATjRo8lBLqRwzTDBe169Tpgxvm/v3kORq16dPvvf
+                          Pm/+84/waeXtf2HXLzWwAAAABJRU5ErkJggg=="
+                     alt="Public domain" style="border-width:0" />
+            </a>
+        </section>
+        <script>
+         let update = e => {
+             let t = e.target.innerText;
+             document.querySelectorAll(`.spine .${e.target.className}`).forEach(x => x.innerText = t);
+         };
+         let adjust = e => {
+             if (e.target.id === 'adjust-len') {
+                 document.querySelectorAll('.spine .j').forEach(s => {
+                     s.style.left = `calc(2cm + ${e.target.value}mm)`;
+                     s.style.height = `calc(297mm - ${e.target.value}mm)`;
+                 });
+                 document.querySelectorAll('.spine .e').forEach(s => {
+                     s.style.width = `${e.target.value}mm`;
+                 });
+             } else {
+                 document.querySelectorAll('.spine .e').forEach(s => {
+                     s.style.top = `${e.target.value}mm`;
+                 });
+             }
+         };
+         document.querySelectorAll('[contenteditable]').forEach(i => ['keyup', 'mouseup', 'change'].forEach(e => i.addEventListener(e, update)));
+         document.querySelectorAll('.controllers input').forEach(i => ['keyup', 'mouseup', 'change'].forEach(e => i.addEventListener(e, adjust)));
+         document.getElementById('print').addEventListener('click', _ => print());
+        </script>
+    </body>
+</html>
