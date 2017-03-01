@@ -99,6 +99,7 @@
             タイトル長さ <input id="adjust-len" type="number" value="50.0" /> mm
             英文タイトル垂直位置調整 <input id="adjust-pos" type="number" value="20.0" /> mm
             <button id="print">印刷</button><hr />
+            必須項目は論文題目と氏名（最新の「手引」を確認のこと）のみ。
             ぼくの好みで後半部が超長くなってますが論文のタイトルがよほど短くないと入らないと思うので適宜調整して下さい。
             論文が40ページだとちょうどいいくらいの文字サイズ設定。
             macOSのGoogle Chromeの印刷機能でLandscape, A4, Margin: Noneに設定するといいかんじです。
@@ -125,6 +126,10 @@
                           Pm/+84/waeXtf2HXLzWwAAAABJRU5ErkJggg=="
                      alt="Public domain" style="border-width:0" />
             </a>
+            <hr />
+            <a href="https://yo.eki.do/spine.html">ふるいの</a>,
+            <a href="https://github.com/kissge/spine2">forkしたりpull reqしたり</a>,
+            <a href="https://twitter.com/p_km">contact</a>
         </section>
         <script>
          let update = e => {
@@ -146,6 +151,9 @@
                  });
              }
          };
+         // rich texts cause trouble
+         let sanitize = e => setTimeout(() => e.target.innerHTML = e.target.innerText, 100);
+         document.querySelectorAll('[contenteditable]').forEach(i => i.addEventListener('paste', sanitize));
          document.querySelectorAll('[contenteditable]').forEach(i => ['keyup', 'mouseup', 'change'].forEach(e => i.addEventListener(e, update)));
          document.querySelectorAll('.controllers input').forEach(i => ['keyup', 'mouseup', 'change'].forEach(e => i.addEventListener(e, adjust)));
          document.getElementById('print').addEventListener('click', _ => print());
